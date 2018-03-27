@@ -95,7 +95,7 @@
         
             //if the string doesn't contain any space then it will cut without word basis.
             $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-            $joketext .= '... <br><a href="/joke.php">Continua a leggere</a>';
+            $joketext .= "... <br><a href='/lorisbarzellette/joke.php?idjoke='".$row["idjoke"].">Read more..</a>";
         }
         
         
