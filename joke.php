@@ -68,7 +68,7 @@
         <?php
             $sql = "SELECT j.idjoke, j.joketext, j.jokedate , a.name, j.likes
                     FROM joke j, author a, jokecategory jc, category c
-                    WHERE c.name = '".$_GET["idjoke"]."'
+                    WHERE j.idjoke = '".$_GET["idjoke"]."'
                     AND j.idauthor = a.idauthor
                     AND j.idjoke = jc.idjoke
                     AND jc.idcategory = c.idcategory";
