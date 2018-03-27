@@ -86,22 +86,22 @@
         $likesconta = 0;}
      while($row = $result->fetch_assoc())
      {
-        // $joketext = strip_tags($row["joketext"]);
-        // if (strlen($joketext) > 500) {
+        $joketext = strip_tags($row["joketext"]);
+        if (strlen($joketext) > 100) {
         
             
-        //     $stringCut = substr($joketext, 0, 50);
-        //     $endPoint = strrpos($stringCut, ' ');
+            $stringCut = substr($joketext, 0, 100);
+            $endPoint = strrpos($stringCut, ' ');
         
-        //     //if the string doesn't contain any space then it will cut without word basis.
-        //     $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-        //     $joketext .= '... <a href="/this/story">Continua a leggere</a>';
-        // }
-        // echo $joketext;
+            //if the string doesn't contain any space then it will cut without word basis.
+            $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
+            $joketext .= '... <br><a href="/joke.php">Continua a leggere</a>';
+        }
+        
         
          echo  "<tr><td style='border:5px solid rgb(".
          rand(0,255).",".rand(0,255).",".rand(0,255).
-         ")' >". $row["joketext"] . "<br>" ."Autore : " . $row["name"]  . "<div name='div_likes".$likesconta."'style='text-align: right'>Likes :  " . $row["likes"]. "</div>" ."Data : ". $row["jokedate"] . "<br>";        
+         ")' >". $joketext . "<br>" ."Autore : " . $row["name"]  . "<div name='div_likes".$likesconta."'style='text-align: right'>Likes :  " . $row["likes"]. "</div>" ."Data : ". $row["jokedate"] . "<br>";        
           ?>
           <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
           <?php
