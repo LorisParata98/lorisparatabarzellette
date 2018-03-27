@@ -63,8 +63,7 @@
 
     </div>
 
-    <div class="content">
-        <table class="jokestable">
+    
 
         <?php
             $sql = "SELECT j.idjoke, j.joketext, j.jokedate , a.name, j.likes
@@ -74,11 +73,12 @@
                     AND j.idjoke = jc.idjoke
                     AND jc.idcategory = c.idcategory";
 
-        if($result = $conn->query($sql)) {
+        if($result = $conn->query($sql)) {    
+             echo "<div class='elenco'>";
+            echo "<table>";
+            $likesconta = 0;
              while ($row = $result->fetch_assoc()) {
-                   echo "<div class='elenco'>";
-                   echo "<table>";
-        $likesconta = 0;
+              
          echo  "<tr><td style='border:5px solid rgb(".
          rand(0,255).",".rand(0,255).",".rand(0,255).
          ")' >". $row["joketext"] . "<br>" ."Autore : " . $row["name"]  . "<div name='div_likes".$likesconta."'style='text-align: right'>Likes :  " . $row["likes"]. "</div>" ."Data : ". $row["jokedate"] . "<br>";        
