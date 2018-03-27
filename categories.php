@@ -88,7 +88,7 @@
                 
                     //if the string doesn't contain any space then it will cut without word basis.
                     $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-                  $joketext .= "... <br><a href='/lorisbarzellette/joke.php?idjoke='".$row["idjoke"].">Read more..</a>";
+                    $joketext .= "... <br><a href='/lorisparatabarzellette/joke.php?idjoke=".$row['idjoke']."'>Read more..</a>";
                 }
                 
               
@@ -100,7 +100,7 @@
           <?php
           
           echo "<button class='like' type='submit'  name='sub_likes".$likesconta."' /><i class='fa fa-thumbs-o-up'>Like</i></button>";
-          //echo $row["idjoke"];
+         
           echo "</form></td></tr>";
           
           if(isset($_POST['sub_likes'.$likesconta.''])){

@@ -79,20 +79,7 @@
             $likesconta = 0;
              while ($row = $result->fetch_assoc()) 
        { 
-
-                 
-                $joketext = strip_tags($row["joketext"]);
-                if (strlen($joketext) > 100) {
-                
-                    
-                    $stringCut = substr($joketext, 0, 100);
-                    $endPoint = strrpos($stringCut, ' ');
-                
-                    //if the string doesn't contain any space then it will cut without word basis.
-                    $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-                    $joketext .= "... <br><a href='/lorisbarzellette/joke.php?idjoke='".$row["idjoke"].">Read more..</a>";
-                }
-                
+     
               
          echo  "<tr><td style='border:5px solid rgb(".
          rand(0,255).",".rand(0,255).",".rand(0,255).
