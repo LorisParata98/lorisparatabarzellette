@@ -63,32 +63,33 @@
 
     </div>
 
-    
-
         <?php
-            $sql = "SELECT j.idjoke, j.joketext, j.jokedate , a.name, j.likes
+
+            $conn->query("Set names UTF8;");
+            $sql = "SELECT j.joketext, j.jokedate, a.name, j.likes, j.idjoke
                     FROM joke j, author a, jokecategory jc, category c
                     WHERE c.name = '".$_GET["category"]."'
-                    AND j.idauthor = a.idauthor
+                    AND  a.idauthor = j.idauthor 
                     AND j.idjoke = jc.idjoke
                     AND jc.idcategory = c.idcategory";
 
-        if($result = $conn->query($sql)) {    
+                    $result = $conn->query($sql);
+             if($result->num_rows > 0)
+              {    
              echo "<div class='elenco'>";
-            echo "<table>";
-            $likesconta = 0;
-             while ($row = $result->fetch_assoc()) {
-
-                $joketext = strip_tags($row["joketext"]);
+             echo "<table>";
+            $likesconta = 0;}
+             while ($row = $result->fetch_assoc()) 
+             {
+             $joketext = strip_tags($row["joketext"]);
                 if (strlen($joketext) > 100) {
                 
                     
                     $stringCut = substr($joketext, 0, 100);
                     $endPoint = strrpos($stringCut, ' ');
                 
-                    //if the string doesn't contain any space then it will cut without word basis.
                     $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-                    $joketext .= "... <br><a href='/lorisparatabarzellette/joke.php?idjoke=".$row['idjoke']."'>Read more..</a>";
+                    $joketext .= "... <br><a href='/lorisparatabarzellette/joke.php?idjoke=".$row['idjoke']."'>Continua a leggere..</a>";
                 }
                 
               
@@ -115,11 +116,9 @@
         else{
         echo "Nessun risultato";
         }
-        $conn->close();
-            }
+        $conn->close();  
         ?>
-        </table>
-    </div>
+        
     <div class="footer"></div>
   </body>
 </html>

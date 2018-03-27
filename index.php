@@ -67,11 +67,9 @@
     </div>
 
     <?php
-     include("db_info.php"); 
-        // header('Content-Type: text/html; charset=utf-8'); //per eliminare le è che danno problemi in visualizzazione
+
+       
         $conn->query("Set names UTF8;");
-
-
         $sql = 
         "SELECT j.joketext, j.jokedate, a.name, j.likes, j.idjoke
          FROM joke j , author a
@@ -92,9 +90,9 @@
             
             $stringCut = substr($joketext, 0, 100);
             $endPoint = strrpos($stringCut, ' ');
-               ;   //if the string doesn't contain any space then it will cut without word basis.
+          
             $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-            $joketext .= "... <br><a href='/lorisparatabarzellette/joke.php?idjoke=".$row['idjoke']."'>Read more..</a>";
+            $joketext .= "... <br><a href='/lorisparatabarzellette/joke.php?idjoke=".$row['idjoke']."'>Continua a leggere..</a>";
         }
         
         
@@ -106,7 +104,7 @@
           <?php
           
           echo "<button class='like' type='submit'  name='sub_likes".$likesconta."' /><i class='fa fa-thumbs-o-up'>Like</i></button>";
-          //echo $row["idjoke"];
+   
           echo "</form></td></tr>";
           
           if(isset($_POST['sub_likes'.$likesconta.''])){
