@@ -23,8 +23,8 @@
              <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <form action="search.php" method="GET">
-            <a><input type="text" name="search" placeholder="Search.."></a>
+            <form action="categories.php?category=".$category method="GET">
+            <a><input type="text" name="category" placeholder="Cerca.." method="get"></a>
             </form>
                 
                  <a href="#">Black Humor</a>
