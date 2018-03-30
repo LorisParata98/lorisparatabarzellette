@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,15 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="js/menu.js"></script>
-   
+    <script type="text/javascript" src="css/menu.js"></script>
     
-    <title>Home</title>
+    <title>Categorie</title>
 </head>
-<body onload="loadAuthors()">
-    
-    
-     <div class="topnav" id="myTopnav">
+  <body>
+    <div class="header">
+    <div class="topnav" id="myTopnav">
         <a href="index.php" class="active"><i class="fa fa-home" style="font-color:white"></i> Home</a>
     
         <div class="dropdown">
@@ -23,10 +21,7 @@
              <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <form action="search.php" method="GET">
-            <a><input type="text" name="search" placeholder="Search.."></a>
-            </form>
-                
+                 <a><input type="text" name="search" placeholder="Search.."></a>
                  <a href="#">Black Humor</a>
                  <a href="#">Religiose</a>
                  <a href="#">Freddure</a>
@@ -35,14 +30,6 @@
             <a href="#news">Accedi</a>
             <a href="#registrati">Registrati!</a>
             <a href="javascript:void(0);"style="color :black" class="icon" onclick="myFunction()">&#9776;</a>
-
-        <a class="searchbar">
-                    <form action="authors.php?author=".$nameauthor>
-                        <input type="text" placeholder="Cerca un autore"
-                        method="get" id="autocomplete" list="json-datalist" name=nameauthor>
-                    </form>
-        </a>
-                <datalist id="json-datalist"></datalist>
       </div>
 
     <div class="intestazione"><h1> Benvenuto! Ecco a voi tutte le nostre barzellette!</h1>  
@@ -76,36 +63,36 @@
 
     </div>
 
-    <?php
+        <?php
 
-       
-        $conn->query("Set names UTF8;");
-        $sql = 
-        "SELECT j.joketext, j.jokedate, a.name, j.likes, j.idjoke
-         FROM joke j , author a
-         where a.idauthor = j.idauthor
-         order by j.idjoke;";
-     
-     $result = $conn->query($sql);
-    if($result->num_rows > 0)
-     {
-        echo "<div class='elenco'>";
-        echo "<table>";
-        $likesconta = 0;}
-     while($row = $result->fetch_assoc())
-     {
-        $joketext = strip_tags($row["joketext"]);
-        if (strlen($joketext) > 100) {
-        
-            
-            $stringCut = substr($joketext, 0, 100);
-            $endPoint = strrpos($stringCut, ' ');
-          
-            $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-            $joketext .= "... <br><a href='/lorisparatabarzellette/joke.php?idjoke=".$row['idjoke']."'>Continua a leggere..</a>";
-        }
-        
-        
+            $conn->query("Set names UTF8;");
+            $sql = "SELECT j.joketext, j.jokedate, a.name, j.likes, j.idjoke
+                    FROM joke j, author a, jokecategory jc, category c
+                    WHERE a.name = '".$_GET["nameauthor"]."'
+                    AND  a.idauthor = j.idauthor 
+                    AND j.idjoke = jc.idjoke
+                    AND jc.idcategory = c.idcategory";
+
+                    $result = $conn->query($sql);
+             if($result->num_rows > 0)
+              {    
+             echo "<div class='elenco'>";
+             echo "<table>";
+            $likesconta = 0;}
+             while ($row = $result->fetch_assoc()) 
+             {
+             $joketext = strip_tags($row["joketext"]);
+                if (strlen($joketext) > 100) {
+                
+                    
+                    $stringCut = substr($joketext, 0, 100);
+                    $endPoint = strrpos($stringCut, ' ');
+                
+                    $joketext = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
+                    $joketext .= "... <br><a href='/lorisparatabarzellette/joke.php?idjoke=".$row['idjoke']."'>Continua a leggere..</a>";
+                }
+                
+              
          echo  "<tr><td style='border:5px solid rgb(".
          rand(0,255).",".rand(0,255).",".rand(0,255).
          ")' >". $joketext . "<br>" ."Autore : " . $row["name"]  . "<div name='div_likes".$likesconta."'style='text-align: right'>Likes :  " . $row["likes"]. "</div>" ."Data : ". $row["jokedate"] . "<br>";        
@@ -114,12 +101,12 @@
           <?php
           
           echo "<button class='like' type='submit'  name='sub_likes".$likesconta."' /><i class='fa fa-thumbs-o-up'>Like</i></button>";
-   
+         
           echo "</form></td></tr>";
           
           if(isset($_POST['sub_likes'.$likesconta.''])){
               mysqli_query($conn, "Update joke set likes=likes + 1 where idjoke=".$row["idjoke"]."") or die(mysqli_error($conn));
-              header("Location: /lorisparatabarzellette/index.php");
+              header("Location: /lorisparatabarzellette/categories.php");
           }
           $likesconta++;  
         }
@@ -129,8 +116,9 @@
         else{
         echo "Nessun risultato";
         }
-        $conn->close();
-    ?>
-</body>
-
+        $conn->close();  
+        ?>
+        
+    <div class="footer"></div>
+  </body>
 </html>

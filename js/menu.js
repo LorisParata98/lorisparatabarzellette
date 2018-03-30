@@ -9,6 +9,7 @@ function myFunction() {
 }
  
 function loadAuthors() {
+    autocomplete="off";
     var dataList = document.getElementById('json-datalist');
     // Clean datalist options
     dataList.innerHTML = "";
@@ -27,12 +28,10 @@ function loadAuthors() {
           // Add the <option> element to the <datalist>.
           dataList.appendChild(option);
         });
-        // $( "#autocomplete" ).autocomplete({
-        //   source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
-        // });
+       
       }
     };
-    // console.log("getAuthors.php?sugg=" + sugg);
+ 
     xhttp.open("GET", "getAuthors.php?sugg=" + sugg, true);
     xhttp.send();
   }
