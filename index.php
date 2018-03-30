@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="js/menu.js"></script>
+   
     
     <title>Home</title>
 </head>
-<body>
+<body onload="loadAuthors()">
+    
     
      <div class="topnav" id="myTopnav">
         <a href="index.php" class="active"><i class="fa fa-home" style="font-color:white"></i> Home</a>
@@ -33,6 +35,14 @@
             <a href="#news">Accedi</a>
             <a href="#registrati">Registrati!</a>
             <a href="javascript:void(0);"style="color :black" class="icon" onclick="myFunction()">&#9776;</a>
+
+        <a class="searchbar">
+                    <form action="getAuthors.php?".$sugg>
+                        <input type="text" placeholder="Cerca un autore"
+                        id="autocomplete" list="json-datalist">
+                    </form>
+        </a>
+                <datalist id="json-datalist"></datalist>
       </div>
 
     <div class="intestazione"><h1> Benvenuto! Ecco a voi tutte le nostre barzellette!</h1>  

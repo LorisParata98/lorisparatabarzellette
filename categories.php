@@ -95,7 +95,7 @@
               
          echo  "<tr><td style='border:5px solid rgb(".
          rand(0,255).",".rand(0,255).",".rand(0,255).
-         ")' >". $row["joketext"] . "<br>" ."Autore : " . $row["name"]  . "<div name='div_likes".$likesconta."'style='text-align: right'>Likes :  " . $row["likes"]. "</div>" ."Data : ". $row["jokedate"] . "<br>";        
+         ")' >". $joketext . "<br>" ."Autore : " . $row["name"]  . "<div name='div_likes".$likesconta."'style='text-align: right'>Likes :  " . $row["likes"]. "</div>" ."Data : ". $row["jokedate"] . "<br>";        
           ?>
           <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
           <?php
