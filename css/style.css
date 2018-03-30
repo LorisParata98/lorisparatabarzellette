@@ -166,9 +166,15 @@ body {margin:0;
     }
 
     .like {
-       
-        float: right;
+        background-color: rgb(33, 0, 180);
         border: none;
+        color: white;
+        float: right;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
     }
 
    a input[type=text] {
