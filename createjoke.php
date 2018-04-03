@@ -39,6 +39,7 @@
        </div> 
            <a href="login.php">Accedi</a>
            <a href="register.php">Registrati!</a>
+         
            <a href="javascript:void(0);"style="color :black" class="icon" onclick="myFunction()">&#9776;</a>
 
        <a class="searchbar">
@@ -60,11 +61,11 @@
                     <a class="hiddenanchor" id="toregister"></a>
                     <div id="wrapper">
                         <div id="register" class="animate form">
-                            <form  action="" autocomplete="on"> 
+                            <form  action="setJoke.php?idauthor=".$idauthor."&joketext=".$joketext autocomplete="on"> 
                                 <h1> Crea la tua barzelletta! </h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u">Username</label>
-                                    <input id="username" name="username" required="required" type="text" placeholder="myusername" />
+                                    <input id="username" name="idauthor" required="required" type="text" placeholder="myusername" />
                                 </p>
                                 <p> 
                                     <label for="joketext" class="uname" data-icon="s">Testo barzelletta</label>

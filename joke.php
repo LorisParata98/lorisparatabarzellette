@@ -31,8 +31,9 @@
                  <a href="#">Freddure</a>
             </div>
         </div> 
-            <a href="#news">Accedi</a>
-            <a href="#registrati">Registrati!</a>
+            <a href="login.php">Accedi</a>
+            <a href="register.php">Registrati!</a>
+            <a href="createjoke.php">Crea barzelletta!</a>
             <a href="javascript:void(0);"style="color :black" class="icon" onclick="myFunction()">&#9776;</a>
 
         <a class="searchbar">

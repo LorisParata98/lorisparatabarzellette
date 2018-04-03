@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+
+    if(isset($_POST['btn_logout'])){
+        session_destroy();
+        header("Location: index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -8,7 +18,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="js/menu.js"></script>
-   
+    <style>
+        .btn_logout{
+            visibility: hidden;
+        }
+        .btn_login{
+            visibility: visible;
+        }
+        .btn_reg{
+            visibility: visible;
+        }
+    </style>
     
     <title>Home</title>
 </head>
@@ -32,8 +52,25 @@
                  <a href="#">Freddure</a>
             </div>
         </div> 
-            <a href="login.php">Accedi</a>
-            <a href="register.php">Registrati!</a>
+            <?php
+
+            if(isset($_SESSION['ses_autore'])){
+                echo "<form method='post' action='".$_SERVER['PHP_SELF']."'><input type='submit' name='btn_logout' value='VA BANNE!'/></form>";
+            }
+            else{
+                echo '<a href="login.php" >Accedi</a>';
+                echo '<a href="register.php">Registrati!</a>';
+            }
+                
+            ?>
+            <a href="createjoke.php">Crea barzelletta!</a>
+
+            <?php 
+                if(isset($_SESSION['ses_autore'])){
+                    echo $_SESSION['ses_autore']; 
+                }        
+            ?>
+            
             <a href="javascript:void(0);"style="color :black" class="icon" onclick="myFunction()">&#9776;</a>
 
         <a class="searchbar">
